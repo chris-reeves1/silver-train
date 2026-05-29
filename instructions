@@ -42,5 +42,31 @@ Stretch 1:
                     unittest.main()
 
 
-Stretch 2 (professionalise):
-    - Gate the quality/security results. 
+Stretch 2 - switch to professional version of app and add:
+    - Gate the quality/security results - must manually approve before continuing (use input)
+    - Push image(s) to Dockerhub - 1) add token form dockerhub to Jenkins credentials.
+                                   2) Add credential to environment{} section in Jenkinsfile.
+                                   3) Use environment vars for things like tags and image names.
+    - Create and archive build and image metadata files including SBOM. 
+
+
+Stretch 3:
+    1) Run a check for image size and block images over 200mb.
+    2) Run initial scans/tests in parallel (so they fail fast)
+    3) Image builds can be done in parallel too!
+    4) Add smoke tests after containers run.
+
+Stretch 4:
+    1) Paramatrize the build with an optional slim build for the image - https://github.com/slimtoolkit/slim
+
+Stretch 5:
+    Request an upgrade to ec2 and run Sonarqube and perfrom static code analysis tests. Dont try it on current t3.mediums.  
+
+
+
+
+
+
+
+
+
