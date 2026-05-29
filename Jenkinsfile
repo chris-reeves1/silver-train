@@ -13,7 +13,7 @@ pipeline{
                 retry(2)
             }
             steps{
-                sh "mkdir ~/jenkins-pipeline-example"
+                sh "mkdir ~/jenkins-pipeline-example || true"
             }
         }
         stage("adding a file"){
