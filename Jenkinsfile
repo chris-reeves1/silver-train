@@ -115,8 +115,7 @@ pipeline {
                       "original_image": "${ORIGINAL_IMAGE}",
                       "slim_image": "${SLIM_IMAGE}",
                       "nginx_image": "${NGINX_IMAGE}",
-                      "dockerhub_repo": "${DOCKERHUB_REPO}",
-                      "sonarqube_project_key": "${SONAR_PROJECT_KEY}"
+                      "dockerhub_repo": "${DOCKERHUB_REPO}"
                     }
                     EOF
 
