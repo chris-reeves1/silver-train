@@ -9,6 +9,18 @@ stages {
             }
         }
 
+        stage("Security Scan") {
+            steps {
+                sh "trivy fs --format json -o trivy-report.json ."
+            }
+            post {
+                always {
+                    // Archive the Trivy report
+                    archiveArtifacts artifacts: 'trivy-report.json', onlyIfSuccessful: true
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'docker build -t flask-app .'
@@ -22,5 +34,19 @@ stages {
                 sh 'docker run -d -p 80:80 --name mynginx --network new-network mynginx:latest'
             }
         }
+
+        stage('Execute Tests') {
+            steps {
+                script {
+                    catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                        sh '''
+                            python3 -m venv .venv
+                            . .venv/bin/activate
+                            pip install -r requirements.txt
+                            python3 -m unittest discover -s tests .
+                            deactivate
+                        '''
+                    }
+                }
     }
 }
