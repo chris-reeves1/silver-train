@@ -13,7 +13,13 @@ pipeline{
                 retry(2)
             }
             steps{
-                sh "mkdir ~/jenkins-pipeline-example || true"
+                sh """
+                    if [ ! -d ~/jenkins-pipeline-example ]; then
+                        mkdir ~/jenkins-pipeline-example
+                        else
+                            echo "not built/already exists"
+                    fi
+                """
             }
         }
         stage("adding a file"){
