@@ -1,0 +1,26 @@
+TASK 1 -app 
+
+simple version to start:
+
+    repo - app.py, nginx.conf, reqs.txt, Dockerfile(s), Jenkinsfile
+
+    local setup on ec2: add jenkins to the docker group + reboot.
+
+    Set up a pipeline job on jenkins with a webhook.
+
+    Jenkinsfile stages:
+        - clean-up (delete container)
+        - set-up (network)
+        - build images
+        - run containers
+
+    manual check - curl or check in browser. 
+
+Stretch 1:
+    Do trivy scan on fs and image. (GUIDE TO BE SENT)
+    Run a unit test (I WILL ADD TO CHAT)
+
+    Archive the scan results. 
+
+Stretch 2 (professionalise):
+    - Gate the quality/security results. 
