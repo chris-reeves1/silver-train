@@ -76,24 +76,6 @@ pipeline {
                         }
                     }
                 }
-
-        //         stage("SonarQube Scan") {
-        //             steps {
-        //                 withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
-        //                     sh """
-        //                         rm -rf .trivycache-* .trivycache-image .trivycache-fs || true
-        //                         docker run --rm \
-        //                         -e SONAR_HOST_URL="${SONAR_HOST_URL}" \
-        //                         -e SONAR_TOKEN="${SONAR_TOKEN}" \
-        //                         -v "${WORKSPACE}:/usr/src" \
-        //                         sonarsource/sonar-scanner-cli \
-        //                         -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-        //                         -Dsonar.sources=. \
-        //                         -Dsonar.exclusions=.venv/**,venv/**,__pycache__/**,**/*.pyc,.trivycache*/**,**/.trivycache-image/**,**/.trivycache-fs/**
-        //                     """
-        //                 }
-        //             }
-        //         }
              }
          }
 
