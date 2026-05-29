@@ -17,10 +17,30 @@ simple version to start:
     manual check - curl or check in browser. 
 
 Stretch 1:
-    Do trivy scan on fs and image. (GUIDE TO BE SENT)
-    Run a unit test (I WILL ADD TO CHAT)
+    Trivy:
+        1) File system scan first (run after clean-up/set-up to catch issues from the repo) + archive
+        2) After image is built run an image scan + archive. 
+    
+    Unit test
+        1) Run a unit test (will require some set up on the ec2...)
+        2) Use catchError() in the stage and mark failing tests as 'unstable'
 
-    Archive the scan results. 
+                import requests
+                import unittest
+                
+                class FlaskAppTests(unittest.TestCase):
+                    BASE_URL = "http://localhost:80"
+                
+                    def test_home_page(self):
+                        response = requests.get(f"{self.BASE_URL}/")
+                        self.assertEqual(response.status_code, 200)
+                        self.assertIn("Hello", response.text)
+                        self.assertIn("I'm currently running in", response.text)
+
+
+                if __name__ == "__main__":
+                    unittest.main()
+
 
 Stretch 2 (professionalise):
     - Gate the quality/security results. 
